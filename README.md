@@ -88,24 +88,21 @@ let climber = Climber.provide()
 #### Get
 
 ```swift
-let name = Climber._name.get(Climber.provide())
+let name = Climber.provide().name or Climber._name.get(Climber.provide())
 // ""
 ```
 
 #### Set
 
 ```swift
-let climber = Climber._name.set(Climber.provide(), "Climber")
+let climber = Climber.provide() |> Climber._name *~ "Climber"
 // Climber(name: "Climber", age: 0)
 ```
 
 #### Modify
 
 ```swift
-let climber1 = Climber._name.set(Climber.provide(), "Climber")
-// Climber(name: "Climber", age: 0)
-
-let climber = Climber._name.modify(climber1, f: { $0 + $0 })
+let name = Climber.provide() |> Climber._name *~ { "Climber" |> { $0 + $0 } }()
 // Climber(name: "ClimberClimber", age: 0)
 ```
 
@@ -124,7 +121,7 @@ struct Climber {
 let climber1 = Climber.provide()
 // Climber(id: Id(value: ""), name: "")
 
-let climber2 = Climber._id.compose(other: Climber.Id._value).set(climber1, "id")
+let climber2 = climber1 |> Climber._id |> Climber.Id._value *~ "id"
 // Climber(id: Id(value: "id"), name: "")
 ```
 

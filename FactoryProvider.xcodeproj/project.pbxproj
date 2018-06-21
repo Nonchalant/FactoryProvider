@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		245D5E1220C6FC0F009DC9EE /* FactoryProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 245D5E1020C6FC0F009DC9EE /* FactoryProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		244D1D5E20DB7D280058FCC9 /* FactoryProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 244D1D5D20DB7D280058FCC9 /* FactoryProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		245D5E1A20C6FCC4009DC9EE /* Providable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245D5E1920C6FCC4009DC9EE /* Providable.swift */; };
 		604121FE20CDAFBF00FCBE7A /* Lens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604121FD20CDAFBF00FCBE7A /* Lens.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		244D1D5D20DB7D280058FCC9 /* FactoryProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FactoryProvider.h; sourceTree = "<group>"; };
 		245D5E0D20C6FC0F009DC9EE /* FactoryProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FactoryProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		245D5E1020C6FC0F009DC9EE /* FactoryProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FactoryProvider.h; sourceTree = "<group>"; };
 		245D5E1120C6FC0F009DC9EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		245D5E1920C6FCC4009DC9EE /* Providable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providable.swift; sourceTree = "<group>"; };
 		604121FD20CDAFBF00FCBE7A /* Lens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lens.swift; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		245D5E1820C6FC9D009DC9EE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				245D5E1020C6FC0F009DC9EE /* FactoryProvider.h */,
+				244D1D5D20DB7D280058FCC9 /* FactoryProvider.h */,
 				245D5E1120C6FC0F009DC9EE /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -73,7 +73,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				245D5E1220C6FC0F009DC9EE /* FactoryProvider.h in Headers */,
+				244D1D5E20DB7D280058FCC9 /* FactoryProvider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,35 +8,48 @@
 
 import Foundation
 
+infix operator *~: MultiplicationPrecedence
+infix operator |>: AdditionPrecedence
+
 public struct Lens<A, B> {
     private let getter: (A) -> B
-    private let setter: (A, B) -> A
-    
-    public init(getter: @escaping (A) -> B, setter: @escaping (A, B) -> A) {
+    private let setter: (B, A) -> A
+
+    public init(getter: @escaping (A) -> B, setter: @escaping (B, A) -> A) {
         self.getter = getter
         self.setter = setter
     }
-    
+
     public func get(_ from: A) -> B {
         return getter(from)
     }
-    
-    public func set(_ from: A, _ to: B) -> A {
+
+    public func set(_ from: B, _ to: A) -> A {
         return setter(from, to)
     }
-    
-    public func modify(_ from: A, f: (B) -> B) -> A {
-        return set(from, f(get(from)))
+}
+
+public func * <A, B, C> (lhs: Lens<A, B>, rhs: Lens<B, C>) -> Lens<A, C> {
+    return Lens<A, C>(
+        getter: { a in
+            rhs.get(lhs.get(a))
+        },
+        setter: { (c, a) in
+            lhs.set(rhs.set(c, lhs.get(a)), a)
+        }
+    )
+}
+
+public func *~ <A, B> (lhs: Lens<A, B>, rhs: B) -> (A) -> A {
+    return { a in
+        lhs.set(rhs, a)
     }
-    
-    public func compose<C>(other: Lens<B, C>) -> Lens<A, C> {
-        return Lens<A, C>(
-            getter: { (a: A) -> C in
-                other.get(self.get(a))
-            },
-            setter: { (a: A, c: C) -> A in
-                self.set(a, other.set(self.get(a), c))
-            }
-        )
-    }
+}
+
+public func |> <A, B> (x: A, f: (A) -> B) -> B {
+    return f(x)
+}
+
+public func |> <A, B, C> (f: @escaping (A) -> B, g: @escaping (B) -> C) -> (A) -> C {
+    return { g(f($0)) }
 }

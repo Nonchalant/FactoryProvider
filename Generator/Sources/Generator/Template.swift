@@ -70,7 +70,7 @@ enum Template {
                 static var _{{ variable.name }}: Lens<{{ struct.name }}, {{ variable.typeName.name }}> {
                     return Lens<{{ struct.name }}, {{ variable.typeName.name }}>(
                         getter: { $0.{{ variable.name }} },
-                        setter: { base, {{ variable.name }} in
+                        setter: { {{ variable.name }}, base in
                             {{ struct.name }}({% for argument in struct.variables %}{{ argument.name }}: {% if variable.name == argument.name %}{{ variable.name }}{% else %}base.{{ argument.name }}{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %})
                         }
                     )

@@ -387,7 +387,7 @@ class CodeGeneratorTests: XCTestCase {
                 static var _name: Lens<Climber, String> {
                     return Lens<Climber, String>(
                         getter: { $0.name },
-                        setter: { base, name in
+                        setter: { name, base in
                             Climber(name: name, age: base.age)
                         }
                     )
@@ -395,7 +395,7 @@ class CodeGeneratorTests: XCTestCase {
                 static var _age: Lens<Climber, Int> {
                     return Lens<Climber, Int>(
                         getter: { $0.age },
-                        setter: { base, age in
+                        setter: { age, base in
                             Climber(name: base.name, age: age)
                         }
                     )
@@ -430,7 +430,7 @@ class CodeGeneratorTests: XCTestCase {
                 static var _name: Lens<Climber, String> {
                     return Lens<Climber, String>(
                         getter: { $0.name },
-                        setter: { base, name in
+                        setter: { name, base in
                             Climber(name: name, age: base.age)
                         }
                     )
@@ -438,7 +438,7 @@ class CodeGeneratorTests: XCTestCase {
                 static var _age: Lens<Climber, T> {
                     return Lens<Climber, T>(
                         getter: { $0.age },
-                        setter: { base, age in
+                        setter: { age, base in
                             Climber(name: base.name, age: age)
                         }
                     )

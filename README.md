@@ -50,17 +50,16 @@ After running once, locate `Factories.generated.swift` and drag it into your Xco
 #### .factory.yml
 
 ```yml
-includes # paths of file or directory to generate
+includes: # paths of file or directory to generate
   - Input/SubInput1
   - Input/SubInput2/Source.swift
-excludes # paths of file or directory not to generate
+excludes: # paths of file or directory not to generate
   - Input/SubInput1/SubSubInput
   - Input/SubInput2/Source.swift
-testables # testable targets
+testables: # testable targets
   - target1
   - target2
-output # path of generated file
-  output/Factories.generated.swift
+output: output/Factories.generated.swift # path of generated file
 ```
 
 ### 2. Usage

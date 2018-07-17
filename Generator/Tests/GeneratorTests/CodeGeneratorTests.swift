@@ -16,13 +16,17 @@ class CodeGeneratorTests: XCTestCase {
     private var options: Options!
     
     override func setUp() {
-        options = Options(includes: [], excludes: [], testables: [], output: "")
+        options = Options(raw: "")
     }
     
     // MARK: - Header
     
     func testTestables() {
-        options = Options(includes: [], excludes: [], testables: ["Testable1", "Testable2"], output: "")
+        options = Options(raw: """
+        testables:
+          - Testable1
+          - Testable2
+        """)
         
         let actual = try! CodeGenerator.run(
             types: [],

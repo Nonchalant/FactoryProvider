@@ -42,31 +42,26 @@ pod "FactoryProvider"
 And add the following `Run script` build phase to your test target's `Build Phases`:
 
 ```Bash
-"${PODS_ROOT}/FactoryProvider/generate" \
-    "${PROJECT_DIR}/${PROJECT_NAME}"/Input1/**/*.swift \
-    "${PROJECT_DIR}/${PROJECT_NAME}"/Input2/**/*.swift \
-    --exclude "${PROJECT_DIR}/${PROJECT_NAME}/Input2/InputFile.swift" \
-    --testable "$PROJECT_NAME" \
-    --output "$PROJECT_DIR/${PROJECT_NAME}Tests/Factories.generated.swift"
+"${PODS_ROOT}/FactoryProvider/generate" --config .factory.yml
 ```
 
 After running once, locate `Factories.generated.swift` and drag it into your Xcode test target group.
 
-#### --include
+#### .factory.yml
 
-path of files to generate
-
-#### --exclude
-
-path of files not to generate
-
-#### --testable
-
-testable target
-
-#### --output
-
-path of generated file
+```yml
+includes # paths of file or directory to generate
+  - Input/SubInput1
+  - Input/SubInput2/Source.swift
+excludes # paths of file or directory not to generate
+  - Input/SubInput1/SubSubInput
+  - Input/SubInput2/Source.swift
+testables # testable targets
+  - target1
+  - target2
+output # path of generated file
+  output/Factories.generated.swift
+```
 
 ### 2. Usage
 

@@ -10,15 +10,16 @@ import Commander
 import Core
 import Generator
 import Parser
+import PathKit
 
 let main = command(
-    VariadicOption<String>("exclude", description: "The path of excluded *.swift"),
-    VariadicOption<String>("testable", description: "The name of testable target"),
-    Option("output", default: "./Factories.generated.swift", description: "The generated path of output"),
-    VariadicArgument<String>("The path of input *.swift")
-) { excludes, testables, output, includes in
-    let options = Options(includes: includes, excludes: excludes, testables: testables, output: output)
-    
+    Option("config", default: ".factory.yml", description: "The path of config")
+) { config in
+    guard let options = (try? Path(config).read()).flatMap(Options.init) else {
+        print("Load Error is occured 😱 \(config)")
+        return
+    }
+
     do {
         let types = try Parser(paths: options.inputs).run()
         try Generator(types: types).run(with: options)

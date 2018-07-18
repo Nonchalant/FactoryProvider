@@ -115,7 +115,7 @@ struct Climber {
 let climber1 = Climber.provide()
 // Climber(id: Id(value: ""), name: "")
 
-let climber2 = climber1 |> Climber._id |> Climber.Id._value *~ "id"
+let climber2 = climber1 |> Climber._id * Climber.Id._value *~ "id"
 // Climber(id: Id(value: "id"), name: "")
 ```
 

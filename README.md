@@ -31,6 +31,7 @@ FactoryProvider works on the following platforms:
 ## Supports
 
 - **Enum**
+- **Protocol**
 - **Struct**
 
 

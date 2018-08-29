@@ -7,11 +7,11 @@ let package = Package(
     name: "FactoryGenerator",
     dependencies: [
         .package(url: "https://github.com/behrang/YamlSwift.git", .upToNextMinor(from: "3.4.3")),
-        .package(url: "https://github.com/jpsim/SourceKitten.git", .upToNextMinor(from: "0.21.0")),
-        .package(url: "https://github.com/Kuniwak/MirrorDiffKit.git", from: "3.0.1"),
+        .package(url: "https://github.com/jpsim/SourceKitten.git", .upToNextMinor(from: "0.21.1")),
+        .package(url: "https://github.com/Kuniwak/MirrorDiffKit.git", from: "3.1.0"),
         .package(url: "https://github.com/kylef/Commander.git", .upToNextMinor(from: "0.8.0")),
         .package(url: "https://github.com/kylef/PathKit.git", .upToNextMinor(from: "0.9.1")),
-        .package(url: "https://github.com/SwiftGen/StencilSwiftKit.git", from: "2.4.0")
+        .package(url: "https://github.com/SwiftGen/StencilSwiftKit.git", from: "2.5.0")
     ],
     targets: [
         .target(

@@ -14,6 +14,12 @@ Generate boilerplate of factory Swift framework.
 
 ## Requirements
 
+- **Swift 4.1**
+- **Xcode 9.4**
+
+
+## Platforms
+
 FactoryProvider works on the following platforms:
 
 - **iOS 8+**
@@ -24,7 +30,8 @@ FactoryProvider works on the following platforms:
 
 ## Supports
 
-Struct, Enum
+- **Enum**
+- **Struct**
 
 
 ## FactoryProvider
@@ -64,7 +71,7 @@ output: output/Factories.generated.swift # path of generated file
 
 ### 2. Usage
 
-You can get a instance to call `<TypeName>.provide()`. Each properties are set to default value.
+You can get a instance to call `Factory<TypeName>.provide()`. Each properties are set to default value.
 
 ```swift
 struct Climber {
@@ -72,37 +79,50 @@ struct Climber {
     let age: Int
 }
 
-let climber = Climber.provide()
+let climber = Factory<Climber>.provide()
+// Climber(name: "", age: 0)
+
+ let optClimber = Factory<Climber?>.provide()
+// Optional(Climber(name: "", age: 0))
+
+ let arrayClimber = Factory<[Climber]>.provide()
+// [Climber(name: "", age: 0)]
 ```
 
 ### 3. Lens
 
-`<TypeName>.provide()` provides fixed instance. You can modify each property by Lens.
+`Factory<TypeName>.provide()` provides fixed instance. You can modify each property by Lens.
 
 #### Get
 
 ```swift
-let name = Climber.provide().name or Climber._name.get(Climber.provide())
+let name = Factory<Climber>.provide().name or Climber._name.get(Factory<Climber>.provide())
 // ""
 ```
 
 #### Set
 
 ```swift
-let climber = Climber.provide() |> Climber._name *~ "Climber"
+import FactoryProvider
+
+let climber = Factory<Climber>.provide() |> Climber._name *~ "Climber"
 // Climber(name: "Climber", age: 0)
 ```
 
 #### Modify
 
 ```swift
-let name = Climber.provide() |> Climber._name *~ { "Climber" |> { $0 + $0 } }()
+import FactoryProvider
+
+let name = Factory<Climber>.provide() |> Climber._name *~ { "Climber" |> { $0 + $0 } }()
 // Climber(name: "ClimberClimber", age: 0)
 ```
 
 #### Compose
 
 ```swift
+import FactoryProvider
+
 struct Climber {
     let id: Id
     let name: String
@@ -112,7 +132,7 @@ struct Climber {
     }
 }
 
-let climber1 = Climber.provide()
+let climber1 = Factory<Climber>.provide()
 // Climber(id: Id(value: ""), name: "")
 
 let climber2 = climber1 |> Climber._id * Climber.Id._value *~ "id"

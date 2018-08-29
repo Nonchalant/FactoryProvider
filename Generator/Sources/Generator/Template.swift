@@ -31,6 +31,17 @@ enum Template {
             return """
             // MARK: - Factory
             
+            struct Factory<T>: Providable {
+                static func provide() -> T {
+                    switch T.self {
+                    case is Providable.Type:
+                        return (T.self as! Providable.Type).provide() as! T
+                    default:
+                        fatalError()
+                    }
+                }
+            }
+            
             // MARK: - Enum
             
             {% for enum in types.enums where not enum.cases.count == 0 %}
@@ -38,7 +49,7 @@ enum Template {
                 public static func provide() -> {{ enum.name }} {
                     return .{{ enum.cases.first.name }}{% if not enum.cases.first.variables.count == 0 %}(
                         {% for variable in enum.cases.first.variables %}
-                        {% if not variable.name == "" %}{{ variable.name }}: {% endif %}{{ variable.typeName.name }}.provide(){% if not forloop.last %},{% endif %}
+                        {% if not variable.name == "" %}{{ variable.name }}: {% endif %}Factory<{{ variable.typeName.name }}>.provide(){% if not forloop.last %},{% endif %}
                         {% endfor %}
                     ){% endif %}
                 }
@@ -52,7 +63,7 @@ enum Template {
                 public static func provide() -> {{ struct.name }} {
                     return {{ struct.name }}(
                         {% for variable in struct.variables %}
-                        {{ variable.name }}: {{ variable.typeName.name }}.provide(){% if not forloop.last %},{% endif %}
+                        {{ variable.name }}: Factory<{{ variable.typeName.name }}>.provide(){% if not forloop.last %},{% endif %}
                         {% endfor %}
                     )
                 }

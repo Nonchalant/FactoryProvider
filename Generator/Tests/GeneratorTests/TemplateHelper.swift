@@ -13,6 +13,17 @@ struct TemplateHelper {
         return """
         // MARK: - Factory
         
+        struct Factory<T>: Providable {
+            static func provide() -> T {
+                switch T.self {
+                case is Providable.Type:
+                    return (T.self as! Providable.Type).provide() as! T\(component(with: protocols, suffix: ""))
+                default:
+                    fatalError()
+                }
+            }
+        }
+        
         // MARK: - Enum
         \(component(with: enums))
         // MARK: - Struct
@@ -29,10 +40,10 @@ struct TemplateHelper {
         """
     }
     
-    private static func component(with types: String?) -> String {
+    private static func component(with types: String?, prefix: String = "\n", suffix: String = "\n") -> String {
         guard let types = types else {
             return ""
         }
-        return "\n\(types)\n"
+        return "\(prefix)\(types)\(suffix)"
     }
 }

@@ -97,8 +97,7 @@ class CodeGeneratorTests: XCTestCase {
         )
         
         let expected = TemplateHelper.factory(
-            protocols: """
-                """
+            protocols: nil
         )
 
         XCTAssertEqual(actual, expected, diff(between: actual, and: expected))
@@ -126,8 +125,8 @@ class CodeGeneratorTests: XCTestCase {
                 extension Climber: Providable {
                     public static func provide() -> Climber {
                         return Climber(
-                            name: String.provide(),
-                            age: Int.provide()
+                            name: Factory<String>.provide(),
+                            age: Factory<Int>.provide()
                         )
                     }
                 }
@@ -180,8 +179,8 @@ class CodeGeneratorTests: XCTestCase {
                 extension Hold: Providable {
                     public static func provide() -> Hold {
                         return Hold(
-                            name: String.provide(),
-                            type: Type.provide()
+                            name: Factory<String>.provide(),
+                            type: Factory<Type>.provide()
                         )
                     }
                 }
@@ -224,8 +223,7 @@ class CodeGeneratorTests: XCTestCase {
         )
         
         let expected = TemplateHelper.factory(
-            protocols: """
-                """,
+            protocols: nil,
             structs: """
                 extension Wall: Providable {
                     public static func provide() -> Wall {
@@ -237,7 +235,7 @@ class CodeGeneratorTests: XCTestCase {
                 extension Hold: Providable {
                     public static func provide() -> Hold {
                         return Hold(
-                            name: Climbable3.provide()
+                            name: Factory<Climbable3>.provide()
                         )
                     }
                 }
@@ -272,8 +270,8 @@ class CodeGeneratorTests: XCTestCase {
                 extension Wall: Providable where T: Providable, S: Providable {
                     public static func provide() -> Wall {
                         return Wall(
-                            name: String.provide(),
-                            angle: Float.provide()
+                            name: Factory<String>.provide(),
+                            angle: Factory<Float>.provide()
                         )
                     }
                 }
@@ -312,8 +310,8 @@ class CodeGeneratorTests: XCTestCase {
                 extension Place: Providable {
                     public static func provide() -> Place {
                         return .other(
-                            String.provide(),
-                            Float.provide()
+                            Factory<String>.provide(),
+                            Factory<Float>.provide()
                         )
                     }
                 }
@@ -350,8 +348,8 @@ class CodeGeneratorTests: XCTestCase {
                 extension Place: Providable {
                     public static func provide() -> Place {
                         return .other(
-                            label1: String.provide(),
-                            label2: Encodable.provide()
+                            label1: Factory<String>.provide(),
+                            label2: Factory<Encodable>.provide()
                         )
                     }
                 }

@@ -36,6 +36,12 @@ enum Template {
                     switch T.self {
                     case is Providable.Type:
                         return (T.self as! Providable.Type).provide() as! T
+                    {% for protocol in types.protocols %}
+                    case is {{ protocol.name }}.Protocol, is Optional<{{ protocol.name }}>.Type:
+                        {% if protocol.compatible == "" %}fatalError(){% else %}return Factory<{{ protocol.compatible }}>.provide() as! T{% endif %}
+                    case is Array<{{ protocol.name }}>.Type:
+                        {% if protocol.compatible == "" %}fatalError(){% else %}return [Factory<{{ protocol.compatible }}>.provide()] as! T{% endif %}
+                    {% endfor %}
                     default:
                         fatalError()
                     }

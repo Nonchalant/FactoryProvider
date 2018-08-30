@@ -97,7 +97,12 @@ class CodeGeneratorTests: XCTestCase {
         )
         
         let expected = TemplateHelper.factory(
-            protocols: nil
+            protocols: """
+                        case is Climbable.Protocol, is Optional<Climbable>.Type:
+                            fatalError()
+                        case is Array<Climbable>.Type:
+                            fatalError()
+                """
         )
 
         XCTAssertEqual(actual, expected, diff(between: actual, and: expected))
@@ -223,7 +228,16 @@ class CodeGeneratorTests: XCTestCase {
         )
         
         let expected = TemplateHelper.factory(
-            protocols: nil,
+            protocols: """
+                        case is Climbable.Protocol, is Optional<Climbable>.Type:
+                            return Factory<Climbable2>.provide() as! T
+                        case is Array<Climbable>.Type:
+                            return [Factory<Climbable2>.provide()] as! T
+                        case is Climbable2.Protocol, is Optional<Climbable2>.Type:
+                            return Factory<Wall>.provide() as! T
+                        case is Array<Climbable2>.Type:
+                            return [Factory<Wall>.provide()] as! T
+                """,
             structs: """
                 extension Wall: Providable {
                     public static func provide() -> Wall {

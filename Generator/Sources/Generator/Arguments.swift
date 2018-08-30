@@ -9,7 +9,7 @@
 import Core
 
 struct Arguments {
-    let types: Types
+    let types: TypesItem
     let testables: [String]
 
     var dictionary: [String: Any] {

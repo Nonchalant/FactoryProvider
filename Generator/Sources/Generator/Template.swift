@@ -31,7 +31,7 @@ enum Template {
             return """
             // MARK: - Factory
             
-            struct Factory<T>: Providable {
+            struct Factory<T> {
                 static func provide() -> T {
                     switch T.self {
                     case is Providable.Type:

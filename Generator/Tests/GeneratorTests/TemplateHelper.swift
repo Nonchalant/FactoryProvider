@@ -13,14 +13,9 @@ struct TemplateHelper {
         return """
         // MARK: - Factory
         
-        struct Factory<T> {
+        struct Factory<T: Providable> {
             static func provide() -> T {
-                switch T.self {
-                case is Providable.Type:
-                    return (T.self as! Providable.Type).provide() as! T\(component(with: protocols, suffix: ""))
-                default:
-                    fatalError()
-                }
+                return T.provide()
             }
         }
         

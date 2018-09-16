@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "FactoryProvider"
-  s.version          = "0.4.0"
+  s.version          = "0.4.1"
   s.summary          = "FactoryProvider - generate boilerplate of factory Swift framework."
   s.description      = <<-DESC
                         FactoryProvider is a framework to generate boilerplate of factory with an easy to write TestCase.

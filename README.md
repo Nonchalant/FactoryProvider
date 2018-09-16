@@ -5,8 +5,8 @@
 [![Platform](http://img.shields.io/cocoapods/p/FactoryProvider.svg?style=flat)](http://cocoadocs.org/pods/FactoryProvider)
 [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/Nonchalant/FactoryProvider/master/LICENSE.md)
 [![GitHub release](https://img.shields.io/github/release/Nonchalant/FactoryProvider.svg)](https://github.com/Nonchalant/FactoryProvider/releases)
-![Xcode](https://img.shields.io/badge/Xcode-10%20beta-brightgreen.svg)
-![Swift](https://img.shields.io/badge/Swift-4.2-brightgreen.svg)
+![Xcode](https://img.shields.io/badge/Xcode-9.3.svg)
+![Swift](https://img.shields.io/badge/Swift-4.1.svg)
 [![Swift Package Manager](https://img.shields.io/badge/Swift%20Package%20Manager-4.0.0-brightgreen.svg)](https://github.com/apple/swift-package-manager)
 
 Generate boilerplate of factory Swift framework.
@@ -14,8 +14,8 @@ Generate boilerplate of factory Swift framework.
 
 ## Requirements
 
-- **Swift 4.2**
-- **Xcode 10 beta**
+- **Swift 4+**
+- **Xcode 9+**
 
 
 ## Platforms

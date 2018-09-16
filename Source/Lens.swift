@@ -11,20 +11,20 @@ import Foundation
 infix operator *~: MultiplicationPrecedence
 infix operator |>: AdditionPrecedence
 
-public struct Lens<A, B> {
-    private let getter: (A) -> B
-    private let setter: (B, A) -> A
+public struct Lens<Whole, Part> {
+    private let getter: (Whole) -> Part
+    private let setter: (Part, Whole) -> Whole
 
-    public init(getter: @escaping (A) -> B, setter: @escaping (B, A) -> A) {
+    public init(getter: @escaping (Whole) -> Part, setter: @escaping (Part, Whole) -> Whole) {
         self.getter = getter
         self.setter = setter
     }
 
-    public func get(_ from: A) -> B {
+    public func get(_ from: Whole) -> Part {
         return getter(from)
     }
 
-    public func set(_ from: B, _ to: A) -> A {
+    public func set(_ from: Part, _ to: Whole) -> Whole {
         return setter(from, to)
     }
 }

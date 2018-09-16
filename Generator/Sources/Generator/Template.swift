@@ -29,14 +29,6 @@ enum Template {
             """
         case .factory:
             return """
-            // MARK: - Factory
-            
-            struct Factory<T: Providable> {
-                static func provide() -> T {
-                    return T.provide()
-                }
-            }
-            
             // MARK: - Enum
             
             {% for enum in types.enums where not enum.cases.count == 0 %}

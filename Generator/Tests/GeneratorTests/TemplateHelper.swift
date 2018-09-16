@@ -11,14 +11,6 @@ import Foundation
 struct TemplateHelper {
     static func factory(enums: String? = nil, protocols: String? = nil, structs: String? = nil) -> String {
         return """
-        // MARK: - Factory
-        
-        struct Factory<T: Providable> {
-            static func provide() -> T {
-                return T.provide()
-            }
-        }
-        
         // MARK: - Enum
         \(component(with: enums))
         // MARK: - Struct

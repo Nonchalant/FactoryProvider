@@ -1,10 +1,3 @@
-//
-//  EnumCaseParser.swift
-//  Parser
-//
-//  Created by Ihara Takeshi on 2018/06/08.
-//
-
 import Core
 import Foundation
 import SourceKittenFramework

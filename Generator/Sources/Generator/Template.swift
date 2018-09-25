@@ -1,11 +1,3 @@
-//
-//  Template.swift
-//  Generator
-//
-//  Created by Ihara Takeshi on 2018/06/07.
-//  Copyright © 2018 Nonchalant. All rights reserved.
-//
-
 import Core
 
 enum Template {
@@ -32,8 +24,8 @@ enum Template {
             // MARK: - Enum
             
             {% for enum in types.enums where not enum.cases.count == 0 %}
-            extension {{ enum.name }}: Providable{% if enum.generics.count != 0 %} where{% for generic in enum.generics %} {{ generic.name }}: Providable{% if not forloop.last %},{% endif %}{% endfor %}{% endif %} {
-                public static func provide() -> {{ enum.name }} {
+            extension Factory{% if enum.generics.count == 0 %} where T == {{ enum.name }}{% endif %} {
+                public static func provide{% if enum.generics.count != 0 %}<{% for generic in enum.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}() -> T {% if enum.generics.count != 0 %}where T == {{ enum.name }}<{% for generic in enum.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
                     return .{{ enum.cases.first.name }}{% if not enum.cases.first.variables.count == 0 %}(
                         {% for variable in enum.cases.first.variables %}
                         {% if not variable.name == "" %}{{ variable.name }}: {% endif %}Factory<{{ variable.typeName.name }}>.provide(){% if not forloop.last %},{% endif %}
@@ -46,8 +38,8 @@ enum Template {
             // MARK: - Struct
             
             {% for struct in types.structs %}
-            extension {{ struct.name }}: Providable{% if struct.generics.count != 0 %} where{% for generic in struct.generics %} {{ generic.name }}: Providable{% if not forloop.last %},{% endif %}{% endfor %}{% endif %} {
-                public static func provide() -> {{ struct.name }} {
+            extension Factory{% if struct.generics.count == 0 %} where T == {{ struct.name }}{% endif %} {
+                public static func provide{% if struct.generics.count != 0 %}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}() -> T {% if struct.generics.count != 0 %}where T == {{ struct.name }}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
                     return {{ struct.name }}(
                         {% for variable in struct.variables %}
                         {{ variable.name }}: Factory<{{ variable.typeName.name }}>.provide(){% if not forloop.last %},{% endif %}

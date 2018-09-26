@@ -1,11 +1,3 @@
-//
-//  TemplateHelper.swift
-//  GeneratorTests
-//
-//  Created by Ihara Takeshi on 2018/06/12.
-//  Copyright © 2018 Nonchalant. All rights reserved.
-//
-
 import Foundation
 
 struct TemplateHelper {

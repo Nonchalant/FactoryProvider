@@ -1,13 +1,3 @@
-//
-//  Lens.swift
-//  FactoryProvider
-//
-//  Created by Ihara Takeshi on 2018/06/11.
-//  Copyright © 2018 Nonchalant. All rights reserved.
-//
-
-import Foundation
-
 infix operator *~: MultiplicationPrecedence
 infix operator |>: AdditionPrecedence
 

@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/Quick/Nimble.git",
         "state": {
           "branch": null,
-          "revision": "9c1379fdcd58c4f2278aea5e029394ba9a2b8f07",
-          "version": "7.1.3"
+          "revision": "cd6dfb86f496fcd96ce0bc6da962cd936bf41903",
+          "version": "7.3.1"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/Quick/Quick.git",
         "state": {
           "branch": null,
-          "revision": "b060679e70d13c3c7dcd124201b5b1b34ce6f340",
-          "version": "1.3.1"
+          "revision": "5fbf13871d185526993130c3a1fad0b70bfe37ce",
+          "version": "1.3.2"
         }
       },
       {
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/jpsim/SourceKitten.git",
         "state": {
           "branch": null,
-          "revision": "e6efd3d8702fe6668ac43aa882d56f82430c6caf",
-          "version": "0.21.1"
+          "revision": "4be914be6fa49cd30b1e7ef5d32d06c037d8f469",
+          "version": "0.21.2"
         }
       },
       {
@@ -87,8 +87,8 @@
         "repositoryURL": "https://github.com/kylef/Stencil.git",
         "state": {
           "branch": null,
-          "revision": "c2e25f25acfbe24442809c055141d8323af8f6cc",
-          "version": "0.11.0"
+          "revision": "b476e50f89577f5848e8013dbf0a850abac892aa",
+          "version": "0.12.1"
         }
       },
       {
@@ -96,8 +96,8 @@
         "repositoryURL": "https://github.com/SwiftGen/StencilSwiftKit.git",
         "state": {
           "branch": null,
-          "revision": "f15c445ec3c7c5ad44814285e828330bc255bda3",
-          "version": "2.5.0"
+          "revision": "17e6ae91838afb90ab873194e45fa5b01731e322",
+          "version": "2.6.0"
         }
       },
       {
@@ -105,8 +105,8 @@
         "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
         "state": {
           "branch": null,
-          "revision": "24698592b581aef2bdbfc86ce18695708038c624",
-          "version": "4.7.1"
+          "revision": "0ce63a93a455adb3cd5e4c55f78f1232a590a5a5",
+          "version": "4.7.2"
         }
       },
       {
@@ -123,8 +123,8 @@
         "repositoryURL": "https://github.com/jpsim/Yams.git",
         "state": {
           "branch": null,
-          "revision": "618582e09699b577fa183bab7d88e3ee7d9a1d19",
-          "version": "1.0.0"
+          "revision": "26ab35f50ea891e8edefcc9d975db2f6b67e1d68",
+          "version": "1.0.1"
         }
       }
     ]

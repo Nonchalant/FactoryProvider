@@ -1,11 +1,3 @@
-//
-//  TypeParserTests.swift
-//  GeneratorTests
-//
-//  Created by Ihara Takeshi on 2018/06/08.
-//  Copyright © 2018 Nonchalant. All rights reserved.
-//
-
 import MirrorDiffKit
 import XCTest
 @testable import Core
@@ -72,8 +64,8 @@ class CodeGeneratorTests: XCTestCase {
 
         let expected = TemplateHelper.factory(
             enums: """
-                extension Wall: Providable {
-                    public static func provide() -> Wall {
+                extension Factory where T == Wall {
+                    public static func provide() -> T {
                         return .hang
                     }
                 }
@@ -122,8 +114,8 @@ class CodeGeneratorTests: XCTestCase {
         
         let expected = TemplateHelper.factory(
             structs: """
-                extension Climber: Providable {
-                    public static func provide() -> Climber {
+                extension Factory where T == Climber {
+                    public static func provide() -> T {
                         return Climber(
                             name: Factory<String>.provide(),
                             age: Factory<Int>.provide()
@@ -169,15 +161,15 @@ class CodeGeneratorTests: XCTestCase {
         
         let expected = TemplateHelper.factory(
             enums: """
-                extension Hold.Type: Providable {
-                    public static func provide() -> Hold.Type {
+                extension Factory where T == Hold.Type {
+                    public static func provide() -> T {
                         return .bucket
                     }
                 }
                 """,
             structs: """
-                extension Hold: Providable {
-                    public static func provide() -> Hold {
+                extension Factory where T == Hold {
+                    public static func provide() -> T {
                         return Hold(
                             name: Factory<String>.provide(),
                             type: Factory<Type>.provide()
@@ -225,15 +217,15 @@ class CodeGeneratorTests: XCTestCase {
         let expected = TemplateHelper.factory(
             protocols: nil,
             structs: """
-                extension Wall: Providable {
-                    public static func provide() -> Wall {
+                extension Factory where T == Wall {
+                    public static func provide() -> T {
                         return Wall(
                         )
                     }
                 }
 
-                extension Hold: Providable {
-                    public static func provide() -> Hold {
+                extension Factory where T == Hold {
+                    public static func provide() -> T {
                         return Hold(
                             name: Factory<Climbable3>.provide()
                         )
@@ -267,8 +259,8 @@ class CodeGeneratorTests: XCTestCase {
         
         let expected = TemplateHelper.factory(
             structs: """
-                extension Wall: Providable where T: Providable, S: Providable {
-                    public static func provide() -> Wall {
+                extension Factory {
+                    public static func provide<T, S>() -> T where T == Wall<T, S> {
                         return Wall(
                             name: Factory<String>.provide(),
                             angle: Factory<Float>.provide()
@@ -307,8 +299,8 @@ class CodeGeneratorTests: XCTestCase {
         
         let expected = TemplateHelper.factory(
             enums: """
-                extension Place: Providable {
-                    public static func provide() -> Place {
+                extension Factory where T == Place {
+                    public static func provide() -> T {
                         return .other(
                             Factory<String>.provide(),
                             Factory<Float>.provide()
@@ -345,8 +337,8 @@ class CodeGeneratorTests: XCTestCase {
         
         let expected = TemplateHelper.factory(
             enums: """
-                extension Place: Providable {
-                    public static func provide() -> Place {
+                extension Factory where T == Place {
+                    public static func provide() -> T {
                         return .other(
                             label1: Factory<String>.provide(),
                             label2: Factory<Encodable>.provide()

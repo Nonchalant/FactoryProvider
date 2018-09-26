@@ -11,7 +11,7 @@ let package = Package(
         .package(url: "https://github.com/Kuniwak/MirrorDiffKit.git", from: "3.1.0"),
         .package(url: "https://github.com/kylef/Commander.git", .upToNextMinor(from: "0.8.0")),
         .package(url: "https://github.com/kylef/PathKit.git", .upToNextMinor(from: "0.9.1")),
-        .package(url: "https://github.com/SwiftGen/StencilSwiftKit.git", from: "2.5.0")
+        .package(url: "https://github.com/SwiftGen/StencilSwiftKit.git", from: "2.6.0")
     ],
     targets: [
         .target(

@@ -1,11 +1,3 @@
-//
-//  ProtocolParser.swift
-//  Parser
-//
-//  Created by Ihara Takeshi on 2018/06/09.
-//  Copyright © 2018 Nonchalant. All rights reserved.
-//
-
 import Core
 import SourceKittenFramework
 

@@ -1,11 +1,3 @@
-//
-//  main.swift
-//  FactoryGenerator
-//
-//  Created by Ihara Takeshi on 2018/06/06.
-//  Copyright © 2018 Nonchalant. All rights reserved.
-//
-
 import Commander
 import Core
 import Generator

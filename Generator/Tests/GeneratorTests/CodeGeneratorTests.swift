@@ -115,10 +115,10 @@ class CodeGeneratorTests: XCTestCase {
         let expected = TemplateHelper.factory(
             structs: """
                 extension Factory where T == Climber {
-                    public static func provide() -> T {
+                    public static func provide(name: String = Factory<String>.provide(), age: Int = Factory<Int>.provide()) -> T {
                         return Climber(
-                            name: Factory<String>.provide(),
-                            age: Factory<Int>.provide()
+                            name: name,
+                            age: age
                         )
                     }
                 }
@@ -169,10 +169,10 @@ class CodeGeneratorTests: XCTestCase {
                 """,
             structs: """
                 extension Factory where T == Hold {
-                    public static func provide() -> T {
+                    public static func provide(name: String = Factory<String>.provide(), type: Type = Factory<Type>.provide()) -> T {
                         return Hold(
-                            name: Factory<String>.provide(),
-                            type: Factory<Type>.provide()
+                            name: name,
+                            type: type
                         )
                     }
                 }
@@ -225,9 +225,9 @@ class CodeGeneratorTests: XCTestCase {
                 }
 
                 extension Factory where T == Hold {
-                    public static func provide() -> T {
+                    public static func provide(name: Climbable3 = Factory<Climbable3>.provide()) -> T {
                         return Hold(
-                            name: Factory<Climbable3>.provide()
+                            name: name
                         )
                     }
                 }
@@ -260,10 +260,10 @@ class CodeGeneratorTests: XCTestCase {
         let expected = TemplateHelper.factory(
             structs: """
                 extension Factory {
-                    public static func provide<T, S>() -> T where T == Wall<T, S> {
+                    public static func provide<T, S>(name: String = Factory<String>.provide(), angle: Float = Factory<Float>.provide()) -> T where T == Wall<T, S> {
                         return Wall(
-                            name: Factory<String>.provide(),
-                            angle: Factory<Float>.provide()
+                            name: name,
+                            angle: angle
                         )
                     }
                 }

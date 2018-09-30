@@ -39,10 +39,10 @@ enum Template {
             
             {% for struct in types.structs %}
             extension Factory{% if struct.generics.count == 0 %} where T == {{ struct.name }}{% endif %} {
-                public static func provide{% if struct.generics.count != 0 %}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}() -> T {% if struct.generics.count != 0 %}where T == {{ struct.name }}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
+                public static func provide{% if struct.generics.count != 0 %}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}({% for variable in struct.variables %}{{ variable.name }}: {{ variable.typeName.name }} = Factory<{{ variable.typeName.name }}>.provide(){% if not forloop.last %}, {% endif %}{% endfor %}) -> T {% if struct.generics.count != 0 %}where T == {{ struct.name }}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
                     return {{ struct.name }}(
                         {% for variable in struct.variables %}
-                        {{ variable.name }}: Factory<{{ variable.typeName.name }}>.provide(){% if not forloop.last %},{% endif %}
+                        {{ variable.name }}: {{ variable.name }}{% if not forloop.last %},{% endif %}
                         {% endfor %}
                     )
                 }

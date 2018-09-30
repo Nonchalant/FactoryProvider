@@ -252,7 +252,7 @@ class TypeParserTests: XCTestCase {
                 cases: [
                     Enum.Case(name: "indoor", variables: []),
                     Enum.Case(name: "outdoor", variables: []),
-                    Enum.Case(name: "other", variables: [Variable(name: "", typeName: TypeName(name: "String"))])
+                    Enum.Case(name: "other(_:)", variables: [Variable(name: "", typeName: TypeName(name: "String"))])
                 ]
             )
         ]

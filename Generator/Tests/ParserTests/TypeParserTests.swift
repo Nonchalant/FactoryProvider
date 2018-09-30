@@ -133,7 +133,7 @@ class TypeParserTests: XCTestCase {
                 conforms: [],
                 variables: [
                     Variable(name: "name", typeName: TypeName(name: "String")),
-                    Variable(name: "type", typeName: TypeName(name: "Type"))
+                    Variable(name: "type", typeName: TypeName(name: "Hold.Type"))
                 ]
             ),
             Enum(
@@ -185,7 +185,7 @@ class TypeParserTests: XCTestCase {
                 conforms: [],
                 variables: [
                     Variable(name: "name", typeName: TypeName(name: "String")),
-                    Variable(name: "type", typeName: TypeName(name: "Type"))
+                    Variable(name: "type", typeName: TypeName(name: "Climbing.Hold.Type"))
                 ]
             ),
             Enum(

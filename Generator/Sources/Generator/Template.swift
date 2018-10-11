@@ -24,8 +24,8 @@ enum Template {
             // MARK: - Enum
             
             {% for enum in types.enums where not enum.cases.count == 0 %}
-            extension Factory{% if enum.generics.count == 0 %} where T == {{ enum.name }}{% endif %} {
-                public static func provide{% if enum.generics.count != 0 %}<{% for generic in enum.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}() -> T {% if enum.generics.count != 0 %}where T == {{ enum.name }}<{% for generic in enum.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
+            extension Factory{% if enum.generics.count == 0 %} where Type == {{ enum.name }}{% endif %} {
+                static func provide{% if enum.generics.count != 0 %}<{% for generic in enum.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}() -> Type {% if enum.generics.count != 0 %}where Type == {{ enum.name }}<{% for generic in enum.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
                     return .{{ enum.cases.first.name }}{% if not enum.cases.first.variables.count == 0 %}(
                         {% for variable in enum.cases.first.variables %}
                         {% if not variable.name == "" %}{{ variable.name }}: {% endif %}Factory<{{ variable.typeName.name }}>.provide(){% if not forloop.last %},{% endif %}
@@ -38,8 +38,8 @@ enum Template {
             // MARK: - Struct
             
             {% for struct in types.structs %}
-            extension Factory{% if struct.generics.count == 0 %} where T == {{ struct.name }}{% endif %} {
-                public static func provide{% if struct.generics.count != 0 %}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}({% for variable in struct.variables %}{{ variable.name }}: {{ variable.typeName.name }} = Factory<{{ variable.typeName.name }}>.provide(){% if not forloop.last %}, {% endif %}{% endfor %}) -> T {% if struct.generics.count != 0 %}where T == {{ struct.name }}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
+            extension Factory{% if struct.generics.count == 0 %} where Type == {{ struct.name }}{% endif %} {
+                static func provide{% if struct.generics.count != 0 %}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}({% for variable in struct.variables %}{{ variable.name }}: {{ variable.typeName.name }} = Factory<{{ variable.typeName.name }}>.provide(){% if not forloop.last %}, {% endif %}{% endfor %}) -> Type {% if struct.generics.count != 0 %}where Type == {{ struct.name }}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
                     return {{ struct.name }}(
                         {% for variable in struct.variables %}
                         {{ variable.name }}: {{ variable.name }}{% if not forloop.last %},{% endif %}
@@ -55,9 +55,9 @@ enum Template {
             // MARK: - Lens
             
             {% for struct in types.structs %}
-            extension {{ struct.name }} {
+            extension Lens{% if struct.generics.count == 0 %} where Type == {{ struct.name }}{% endif %} {
                 {% for variable in struct.variables %}
-                static var _{{ variable.name }}: Lens<{{ struct.name }}, {{ variable.typeName.name }}> {
+                static func {{ variable.name }}{% if struct.generics.count != 0 %}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}() -> Lens<{{ struct.name }}, {{ variable.typeName.name }}> {% if struct.generics.count != 0 %}where Type == {{ struct.name }}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
                     return Lens<{{ struct.name }}, {{ variable.typeName.name }}>(
                         getter: { $0.{{ variable.name }} },
                         setter: { {{ variable.name }}, base in

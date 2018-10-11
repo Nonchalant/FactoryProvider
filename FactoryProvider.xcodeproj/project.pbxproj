@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		244D1D5E20DB7D280058FCC9 /* FactoryProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 244D1D5D20DB7D280058FCC9 /* FactoryProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		245D5E1A20C6FCC4009DC9EE /* Factory+Primitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245D5E1920C6FCC4009DC9EE /* Factory+Primitive.swift */; };
-		604121FE20CDAFBF00FCBE7A /* Lens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604121FD20CDAFBF00FCBE7A /* Lens.swift */; };
+		5F3E4332216F1015002B4F9B /* Lens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3E4331216F1015002B4F9B /* Lens.swift */; };
+		604121FE20CDAFBF00FCBE7A /* LensOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604121FD20CDAFBF00FCBE7A /* LensOver.swift */; };
 		60B30AC6214E7C2600E0B844 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B30AC5214E7C2600E0B844 /* Factory.swift */; };
 /* End PBXBuildFile section */
 
@@ -18,7 +19,8 @@
 		245D5E0D20C6FC0F009DC9EE /* FactoryProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FactoryProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		245D5E1120C6FC0F009DC9EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		245D5E1920C6FCC4009DC9EE /* Factory+Primitive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Factory+Primitive.swift"; sourceTree = "<group>"; };
-		604121FD20CDAFBF00FCBE7A /* Lens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lens.swift; sourceTree = "<group>"; };
+		5F3E4331216F1015002B4F9B /* Lens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lens.swift; sourceTree = "<group>"; };
+		604121FD20CDAFBF00FCBE7A /* LensOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LensOver.swift; sourceTree = "<group>"; };
 		60B30AC5214E7C2600E0B844 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,7 +56,8 @@
 			children = (
 				60B30AC5214E7C2600E0B844 /* Factory.swift */,
 				245D5E1920C6FCC4009DC9EE /* Factory+Primitive.swift */,
-				604121FD20CDAFBF00FCBE7A /* Lens.swift */,
+				5F3E4331216F1015002B4F9B /* Lens.swift */,
+				604121FD20CDAFBF00FCBE7A /* LensOver.swift */,
 				245D5E1820C6FC9D009DC9EE /* Supporting Files */,
 			);
 			path = Source;
@@ -149,7 +152,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				245D5E1A20C6FCC4009DC9EE /* Factory+Primitive.swift in Sources */,
-				604121FE20CDAFBF00FCBE7A /* Lens.swift in Sources */,
+				5F3E4332216F1015002B4F9B /* Lens.swift in Sources */,
+				604121FE20CDAFBF00FCBE7A /* LensOver.swift in Sources */,
 				60B30AC6214E7C2600E0B844 /* Factory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -96,7 +96,7 @@ let climber = Factory<Climber>.provide()
 #### Get
 
 ```swift
-let name = Factory<Climber>.provide().name or Climber._name.get(Factory<Climber>.provide())
+let name = Factory<Climber>.provide().name or Lens<Climber>.name().get(Factory<Climber>.provide())
 // ""
 ```
 
@@ -105,7 +105,7 @@ let name = Factory<Climber>.provide().name or Climber._name.get(Factory<Climber>
 ```swift
 import FactoryProvider
 
-let climber = Factory<Climber>.provide() |> Climber._name *~ "Climber"
+let climber = Factory<Climber>.provide() |> Lens<Climber>.name() *~ "Climber"
 // Climber(name: "Climber", age: 0)
 ```
 
@@ -114,7 +114,7 @@ let climber = Factory<Climber>.provide() |> Climber._name *~ "Climber"
 ```swift
 import FactoryProvider
 
-let name = Factory<Climber>.provide() |> Climber._name *~ { "Climber" |> { $0 + $0 } }()
+let name = Factory<Climber>.provide() |> Lens<Climber>.name() *~ { "Climber" |> { $0 + $0 } }()
 // Climber(name: "ClimberClimber", age: 0)
 ```
 
@@ -135,7 +135,7 @@ struct Climber {
 let climber1 = Factory<Climber>.provide()
 // Climber(id: Id(value: ""), name: "")
 
-let climber2 = climber1 |> Climber._id * Climber.Id._value *~ "id"
+let climber2 = climber1 |> Lens<Climber>.id() * Lens<Climber.Id>.value() *~ "id"
 // Climber(id: Id(value: "id"), name: "")
 ```
 

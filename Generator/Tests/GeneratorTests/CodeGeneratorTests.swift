@@ -64,8 +64,8 @@ class CodeGeneratorTests: XCTestCase {
 
         let expected = TemplateHelper.factory(
             enums: """
-                extension Factory where T == Wall {
-                    public static func provide() -> T {
+                extension Factory where Type == Wall {
+                    static func provide() -> Type {
                         return .hang
                     }
                 }
@@ -114,8 +114,8 @@ class CodeGeneratorTests: XCTestCase {
         
         let expected = TemplateHelper.factory(
             structs: """
-                extension Factory where T == Climber {
-                    public static func provide(name: String = Factory<String>.provide(), age: Int = Factory<Int>.provide()) -> T {
+                extension Factory where Type == Climber {
+                    static func provide(name: String = Factory<String>.provide(), age: Int = Factory<Int>.provide()) -> Type {
                         return Climber(
                             name: name,
                             age: age
@@ -161,15 +161,15 @@ class CodeGeneratorTests: XCTestCase {
         
         let expected = TemplateHelper.factory(
             enums: """
-                extension Factory where T == Hold.Type {
-                    public static func provide() -> T {
+                extension Factory where Type == Hold.Type {
+                    static func provide() -> Type {
                         return .bucket
                     }
                 }
                 """,
             structs: """
-                extension Factory where T == Hold {
-                    public static func provide(name: String = Factory<String>.provide(), type: Type = Factory<Type>.provide()) -> T {
+                extension Factory where Type == Hold {
+                    static func provide(name: String = Factory<String>.provide(), type: Type = Factory<Type>.provide()) -> Type {
                         return Hold(
                             name: name,
                             type: type
@@ -217,15 +217,15 @@ class CodeGeneratorTests: XCTestCase {
         let expected = TemplateHelper.factory(
             protocols: nil,
             structs: """
-                extension Factory where T == Wall {
-                    public static func provide() -> T {
+                extension Factory where Type == Wall {
+                    static func provide() -> Type {
                         return Wall(
                         )
                     }
                 }
 
-                extension Factory where T == Hold {
-                    public static func provide(name: Climbable3 = Factory<Climbable3>.provide()) -> T {
+                extension Factory where Type == Hold {
+                    static func provide(name: Climbable3 = Factory<Climbable3>.provide()) -> Type {
                         return Hold(
                             name: name
                         )
@@ -260,7 +260,7 @@ class CodeGeneratorTests: XCTestCase {
         let expected = TemplateHelper.factory(
             structs: """
                 extension Factory {
-                    public static func provide<T, S>(name: String = Factory<String>.provide(), angle: Float = Factory<Float>.provide()) -> T where T == Wall<T, S> {
+                    static func provide<T, S>(name: String = Factory<String>.provide(), angle: Float = Factory<Float>.provide()) -> Type where Type == Wall<T, S> {
                         return Wall(
                             name: name,
                             angle: angle
@@ -299,8 +299,8 @@ class CodeGeneratorTests: XCTestCase {
         
         let expected = TemplateHelper.factory(
             enums: """
-                extension Factory where T == Place {
-                    public static func provide() -> T {
+                extension Factory where Type == Place {
+                    static func provide() -> Type {
                         return .other(
                             Factory<String>.provide(),
                             Factory<Float>.provide()
@@ -337,8 +337,8 @@ class CodeGeneratorTests: XCTestCase {
         
         let expected = TemplateHelper.factory(
             enums: """
-                extension Factory where T == Place {
-                    public static func provide() -> T {
+                extension Factory where Type == Place {
+                    static func provide() -> Type {
                         return .other(
                             label1: Factory<String>.provide(),
                             label2: Factory<Encodable>.provide()
@@ -373,8 +373,8 @@ class CodeGeneratorTests: XCTestCase {
         )
         
         let expected: String = TemplateHelper.lens(structs: """
-            extension Climber {
-                static var _name: Lens<Climber, String> {
+            extension Lens where Type == Climber {
+                static func name() -> Lens<Climber, String> {
                     return Lens<Climber, String>(
                         getter: { $0.name },
                         setter: { name, base in
@@ -382,7 +382,7 @@ class CodeGeneratorTests: XCTestCase {
                         }
                     )
                 }
-                static var _age: Lens<Climber, Int> {
+                static func age() -> Lens<Climber, Int> {
                     return Lens<Climber, Int>(
                         getter: { $0.age },
                         setter: { age, base in
@@ -416,8 +416,8 @@ class CodeGeneratorTests: XCTestCase {
         )
         
         let expected: String = TemplateHelper.lens(structs: """
-            extension Climber {
-                static var _name: Lens<Climber, String> {
+            extension Lens {
+                static func name<T>() -> Lens<Climber, String> where Type == Climber<T> {
                     return Lens<Climber, String>(
                         getter: { $0.name },
                         setter: { name, base in
@@ -425,7 +425,7 @@ class CodeGeneratorTests: XCTestCase {
                         }
                     )
                 }
-                static var _age: Lens<Climber, T> {
+                static func age<T>() -> Lens<Climber, T> where Type == Climber<T> {
                     return Lens<Climber, T>(
                         getter: { $0.age },
                         setter: { age, base in

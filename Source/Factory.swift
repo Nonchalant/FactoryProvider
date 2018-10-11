@@ -1,5 +1,5 @@
-public struct Factory<T> {
-    static func provide() -> T {
+public struct Factory<Type> {
+    static func provide() -> Type {
         fatalError()
     }
 }

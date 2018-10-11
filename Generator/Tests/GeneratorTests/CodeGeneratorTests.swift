@@ -374,16 +374,16 @@ class CodeGeneratorTests: XCTestCase {
         
         let expected: String = TemplateHelper.lens(structs: """
             extension Lens where Type == Climber {
-                static func name() -> Lens<Climber, String> {
-                    return Lens<Climber, String>(
+                static func name() -> LensOver<Climber, String> {
+                    return LensOver<Climber, String>(
                         getter: { $0.name },
                         setter: { name, base in
                             Climber(name: name, age: base.age)
                         }
                     )
                 }
-                static func age() -> Lens<Climber, Int> {
-                    return Lens<Climber, Int>(
+                static func age() -> LensOver<Climber, Int> {
+                    return LensOver<Climber, Int>(
                         getter: { $0.age },
                         setter: { age, base in
                             Climber(name: base.name, age: age)
@@ -417,16 +417,16 @@ class CodeGeneratorTests: XCTestCase {
         
         let expected: String = TemplateHelper.lens(structs: """
             extension Lens {
-                static func name<T>() -> Lens<Climber, String> where Type == Climber<T> {
-                    return Lens<Climber, String>(
+                static func name<T>() -> LensOver<Climber, String> where Type == Climber<T> {
+                    return LensOver<Climber, String>(
                         getter: { $0.name },
                         setter: { name, base in
                             Climber(name: name, age: base.age)
                         }
                     )
                 }
-                static func age<T>() -> Lens<Climber, T> where Type == Climber<T> {
-                    return Lens<Climber, T>(
+                static func age<T>() -> LensOver<Climber, T> where Type == Climber<T> {
+                    return LensOver<Climber, T>(
                         getter: { $0.age },
                         setter: { age, base in
                             Climber(name: base.name, age: age)

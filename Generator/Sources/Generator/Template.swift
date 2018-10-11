@@ -57,8 +57,8 @@ enum Template {
             {% for struct in types.structs %}
             extension Lens{% if struct.generics.count == 0 %} where Type == {{ struct.name }}{% endif %} {
                 {% for variable in struct.variables %}
-                static func {{ variable.name }}{% if struct.generics.count != 0 %}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}() -> Lens<{{ struct.name }}, {{ variable.typeName.name }}> {% if struct.generics.count != 0 %}where Type == {{ struct.name }}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
-                    return Lens<{{ struct.name }}, {{ variable.typeName.name }}>(
+                static func {{ variable.name }}{% if struct.generics.count != 0 %}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}() -> LensOver<{{ struct.name }}, {{ variable.typeName.name }}> {% if struct.generics.count != 0 %}where Type == {{ struct.name }}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
+                    return LensOver<{{ struct.name }}, {{ variable.typeName.name }}>(
                         getter: { $0.{{ variable.name }} },
                         setter: { {{ variable.name }}, base in
                             {{ struct.name }}({% for argument in struct.variables %}{{ argument.name }}: {% if variable.name == argument.name %}{{ variable.name }}{% else %}base.{{ argument.name }}{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %})

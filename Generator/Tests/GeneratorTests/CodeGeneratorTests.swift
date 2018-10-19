@@ -257,18 +257,7 @@ class CodeGeneratorTests: XCTestCase {
             with: options
         )
         
-        let expected = TemplateHelper.factory(
-            structs: """
-                extension Factory {
-                    static func provide<T, S>(name: String = Factory<String>.provide(), angle: Float = Factory<Float>.provide()) -> Type where Type == Wall<T, S> {
-                        return Wall(
-                            name: name,
-                            angle: angle
-                        )
-                    }
-                }
-                """
-        )
+        let expected = TemplateHelper.factory()
         
         XCTAssertEqual(actual, expected, diff(between: actual, and: expected))
     }
@@ -415,26 +404,7 @@ class CodeGeneratorTests: XCTestCase {
             with: options
         )
         
-        let expected: String = TemplateHelper.lens(structs: """
-            extension Lens {
-                static func name<T>() -> LensOver<Climber, String> where Type == Climber<T> {
-                    return LensOver<Climber, String>(
-                        getter: { $0.name },
-                        setter: { name, base in
-                            Climber(name: name, age: base.age)
-                        }
-                    )
-                }
-                static func age<T>() -> LensOver<Climber, T> where Type == Climber<T> {
-                    return LensOver<Climber, T>(
-                        getter: { $0.age },
-                        setter: { age, base in
-                            Climber(name: base.name, age: age)
-                        }
-                    )
-                }
-            }
-            """)
+        let expected: String = TemplateHelper.lens()
         
         XCTAssertEqual(actual, expected, diff(between: actual, and: expected))
     }

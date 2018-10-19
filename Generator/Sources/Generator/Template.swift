@@ -23,9 +23,9 @@ enum Template {
             return """
             // MARK: - Enum
             
-            {% for enum in types.enums where not enum.cases.count == 0 %}
-            extension Factory{% if enum.generics.count == 0 %} where Type == {{ enum.name }}{% endif %} {
-                static func provide{% if enum.generics.count != 0 %}<{% for generic in enum.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}() -> Type {% if enum.generics.count != 0 %}where Type == {{ enum.name }}<{% for generic in enum.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
+            {% for enum in types.enums where not enum.cases.count == 0 and enum.generics.count == 0 %}
+            extension Factory where Type == {{ enum.name }} {
+                static func provide() -> Type {
                     return .{{ enum.cases.first.name }}{% if not enum.cases.first.variables.count == 0 %}(
                         {% for variable in enum.cases.first.variables %}
                         {% if not variable.name == "" %}{{ variable.name }}: {% endif %}Factory<{{ variable.typeName.name }}>.provide(){% if not forloop.last %},{% endif %}
@@ -37,9 +37,9 @@ enum Template {
             {% endfor %}
             // MARK: - Struct
             
-            {% for struct in types.structs %}
-            extension Factory{% if struct.generics.count == 0 %} where Type == {{ struct.name }}{% endif %} {
-                static func provide{% if struct.generics.count != 0 %}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}({% for variable in struct.variables %}{{ variable.name }}: {{ variable.typeName.name }} = Factory<{{ variable.typeName.name }}>.provide(){% if not forloop.last %}, {% endif %}{% endfor %}) -> Type {% if struct.generics.count != 0 %}where Type == {{ struct.name }}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
+            {% for struct in types.structs where struct.generics.count == 0 %}
+            extension Factory where Type == {{ struct.name }} {
+                static func provide({% for variable in struct.variables %}{{ variable.name }}: {{ variable.typeName.name }} = Factory<{{ variable.typeName.name }}>.provide(){% if not forloop.last %}, {% endif %}{% endfor %}) -> Type {
                     return {{ struct.name }}(
                         {% for variable in struct.variables %}
                         {{ variable.name }}: {{ variable.name }}{% if not forloop.last %},{% endif %}
@@ -54,10 +54,10 @@ enum Template {
             return """
             // MARK: - Lens
             
-            {% for struct in types.structs %}
-            extension Lens{% if struct.generics.count == 0 %} where Type == {{ struct.name }}{% endif %} {
+            {% for struct in types.structs where struct.generics.count == 0 %}
+            extension Lens where Type == {{ struct.name }} {
                 {% for variable in struct.variables %}
-                static func {{ variable.name }}{% if struct.generics.count != 0 %}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}>{% endif %}() -> LensOver<{{ struct.name }}, {{ variable.typeName.name }}> {% if struct.generics.count != 0 %}where Type == {{ struct.name }}<{% for generic in struct.generics %}{{ generic.name }}{% if not forloop.last %}, {% endif %}{% endfor %}> {% endif %}{
+                static func {{ variable.name }}() -> LensOver<{{ struct.name }}, {{ variable.typeName.name }}> {
                     return LensOver<{{ struct.name }}, {{ variable.typeName.name }}>(
                         getter: { $0.{{ variable.name }} },
                         setter: { {{ variable.name }}, base in

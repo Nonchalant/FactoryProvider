@@ -139,6 +139,16 @@ let climber2 = climber1 |> Lens<Climber>.id() * Lens<Climber.Id>.value() *~ "id"
 // Climber(id: Id(value: "id"), name: "")
 ```
 
+## Notice
+
+### Generics
+
+If you want to contains type using generics, you should use `0.4.1`.
+
+```Ruby
+pod "FactoryProvider", '~> 0.4.1'
+```
+
 
 ## Libraries
 

@@ -2,7 +2,7 @@ import Foundation
 
 extension Factory {
     public static func provide<E>() -> Type where Type == Array<E> {
-        return [Factory<E>.provide()]
+        return []
     }
 }
 
@@ -32,7 +32,7 @@ extension Factory where Type == Date {
 
 extension Factory {
     public static func provide<K, V>() -> Type where Type == Dictionary<K, V> {
-        return [Factory<K>.provide(): Factory<V>.provide()]
+        return [:]
     }
 }
 
@@ -80,7 +80,7 @@ extension Factory where Type == Int64 {
 
 extension Factory {
     public static func provide<W>() -> Type where Type == Optional<W> {
-        return .some(Factory<W>.provide())
+        return .none
     }
 }
 

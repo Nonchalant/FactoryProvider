@@ -23,10 +23,10 @@ public func * <A, B, C> (lhs: LensOver<A, B>, rhs: LensOver<B, C>) -> LensOver<A
     return LensOver<A, C>(
         getter: { a in
             rhs.get(lhs.get(a))
-    },
+        },
         setter: { (c, a) in
             lhs.set(rhs.set(c, lhs.get(a)), a)
-    }
+        }
     )
 }
 
